@@ -1,11 +1,50 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ServiceController;
 
-Route::get('/', function () {
-    return view('pages.home.index');
+
+Route::prefix('/')->group(function(){
+    Route::get('', function () {
+        return view('pages.home.index');
+    })->name('homepage');
+
+    Route::middleware('auth')->prefix('/service')->group(function(){
+        Route::view('','pages.service.add')->name('services.add');
+    
+        Route::controller(ServiceController::class)->name("services.")->group(function(){
+            Route::post('','store')->name("store");
+        });
+    });
+
 });
+
+
+Route::get('/logout',function (){
+    Auth::logout();
+    return redirect('/');
+    
+})->middleware('auth')->name('logout');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
