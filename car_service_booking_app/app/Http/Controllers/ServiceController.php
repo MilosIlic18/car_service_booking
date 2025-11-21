@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Repositories\ServiceRepository;
@@ -15,7 +16,7 @@ class ServiceController extends Controller
     private $locationRepo;
     public function __construct(ServiceRepository $serviceRepo, LocationRepository $locationRepo){
 
-        $this->serviceRepo = $serviceRepo;
+        $this->serviceRepo  = $serviceRepo;
         $this->locationRepo = $locationRepo;
     }
     public function store(StoreServiceRequest $request) {

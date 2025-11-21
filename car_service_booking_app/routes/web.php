@@ -1,11 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TownController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Middleware\AdminCheckMiddleware;
+use App\Http\Middleware\OwnerCheckMiddleware;
+use App\Http\Controllers\AdminServiceController;
+use App\Http\Middleware\GuestClientCheckMiddleware;
+use App\Http\Controllers\ServriceProfile\ServiceProfilesController;
 
 
-Route::prefix('/')->group(function(){
+Route::middleware(GuestClientCheckMiddleware::class)->prefix('/')->group(function(){
     Route::get('', function () {
         return view('pages.home.index');
     })->name('homepage');
@@ -18,6 +24,26 @@ Route::prefix('/')->group(function(){
         });
     });
 
+});
+
+Route::middleware(['auth',OwnerCheckMiddleware::class])->prefix('/serviceProfile')->name('serviceProfile.')->group(function(){
+    
+    Route::controller(ServiceProfilesController::class)->prefix('/services')->name("services.")->group(function(){
+        Route::get('','index')->name("index");
+    });
+});
+
+Route::middleware(['auth',AdminCheckMiddleware::class])->prefix('/admin')->name('admin.')->group(function(){
+    
+    Route::controller(AdminServiceController::class)->prefix('/services')->name("services.")->group(function(){
+        Route::get('','index')->name("index");
+        Route::get('{service}','verified')->name('verified');
+    });
+    
+    Route::controller(TownController::class)->name("towns.")->group(function(){
+        Route::get('','index')->name("index");
+        Route::post('','store')->name('store');
+    });
 });
 
 

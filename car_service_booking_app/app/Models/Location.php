@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Town;
 use App\Models\Service;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Location extends Model
 {
@@ -17,4 +18,11 @@ class Location extends Model
         'street',
         'house_number'
     ];
+
+    public function service():BelongsTo{
+        return $this->belongsTo(Service::class);
+    }
+    public function town():BelongsTo{
+        return $this->belongsTo(Town::class,'towns_id');
+    }
 }

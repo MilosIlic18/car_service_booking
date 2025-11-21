@@ -12,4 +12,8 @@ class Town extends Model
     protected $fillable = [
         'name',
     ];
+    
+    public function locations():HasMany{
+        return $this->hasMany(Location::class,self::TABLE,'id');
+    }
 }
