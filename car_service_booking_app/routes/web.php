@@ -2,16 +2,26 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Public\ServiceRequestController;
 
 
 
-Route::get('/', function () {
-    return "Setup project";
+Route::prefix('/')->group(function(){
+    Route::get('/', function () {
+        return "Setup project";
+    });
+    Route::middleware('auth')->controller(ServiceRequestController::class)->prefix("/service-request")->name('service-request.')->group(function(){
+        Route::get("","index")->name('index');
+        Route::post("","store")->name('store');
+    });
+
 });
 
-
-
-
+Route::get('/logout',function (){
+    Auth::logout();
+    return redirect('/');
+    
+})->middleware('auth')->name('logout');
 
 
 
