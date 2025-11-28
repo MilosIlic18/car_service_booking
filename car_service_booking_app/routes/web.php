@@ -1,7 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Middleware\AdminCheckMiddleware;
+use App\Http\Controllers\Admin\ServiceProfilesController;
 use App\Http\Controllers\Public\ServiceRequestController;
 
 
@@ -15,6 +18,15 @@ Route::prefix('/')->group(function(){
         Route::post("","store")->name('store');
     });
 
+});
+
+
+Route::middleware(["auth",AdminCheckMiddleware::class])->prefix('/admin')->name("admin.")->group(function(){
+    Route::redirect('','admin/service-profiles')->name('index');
+    Route::controller(ServiceProfilesController::class)->prefix("/service-profiles")->name('service-profiles.')->group(function(){
+        Route::get("","index")->name('index');
+        Route::put("{service}","verified")->name('verified');
+    });
 });
 
 Route::get('/logout',function (){
