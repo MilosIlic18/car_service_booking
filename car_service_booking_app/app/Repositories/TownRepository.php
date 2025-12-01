@@ -15,7 +15,7 @@ class TownRepository{
     }
     function all(){
         
-        return $this->town::all();
+        return $this->town::with('locations')->get();
     }
     public function store($request){
         

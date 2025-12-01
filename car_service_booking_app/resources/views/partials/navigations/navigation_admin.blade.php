@@ -2,6 +2,8 @@
     <ul class="flex flex-col gap-[10px] p-[10px] cursor-pointer md:flex-row">
         <li class="hover:text-white"><a href="{{ route('admin.index') }}">Pocetna</a></li>
         <li class="hover:text-white"><a href="{{ route('admin.service-profiles.index') }}">Pregled servisa</a></li>
+        
+        <li class="hover:text-white"><a href="{{ route('admin.towns.index') }}">Pregled gradova</a></li>
         <li class="hover:text-white">
             @if(Illuminate\Support\Facades\Auth::check())
             <a href="{{route('logout')}}">Odjava</a>

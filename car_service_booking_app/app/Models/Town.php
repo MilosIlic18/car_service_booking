@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Models\Location;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Town extends Model
 {
@@ -11,4 +13,8 @@ class Town extends Model
     protected $fillable = [
         'name',
     ];
+    
+    public function locations(): HasMany {
+        return $this->hasMany(Location::class,'towns_id','id');
+    }
 }

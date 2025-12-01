@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\AdminCheckMiddleware;
+use App\Http\Controllers\Admin\TownController;
 use App\Http\Controllers\Admin\ServiceProfilesController;
 use App\Http\Controllers\Public\ServiceRequestController;
 
@@ -26,6 +27,13 @@ Route::middleware(["auth",AdminCheckMiddleware::class])->prefix('/admin')->name(
     Route::controller(ServiceProfilesController::class)->prefix("/service-profiles")->name('service-profiles.')->group(function(){
         Route::get("","index")->name('index');
         Route::put("{service}","verified")->name('verified');
+    });
+    Route::controller(TownController::class)->prefix("/towns")->name('towns.')->group(function(){
+        Route::get("","index")->name('index');
+        Route::get("{town}","show")->name('show');
+        Route::put("{town}","update")->name('edit');
+        Route::delete("{town}","destroy")->name('destroy');
+        Route::post("","store")->name('store');
     });
 });
 
