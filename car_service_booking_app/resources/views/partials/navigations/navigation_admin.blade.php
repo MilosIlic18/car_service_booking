@@ -3,6 +3,7 @@
         <li class="hover:text-white"><a href="{{ route('admin.index') }}">Pocetna</a></li>
         
         <li class="hover:text-white"><a href="{{ route('admin.users.index') }}">Korisnici</a></li>
+        <li class="hover:text-white"><a href="{{ route('admin.service-types.index') }}">Servisni tipovi</a></li>
         <li class="hover:text-white"><a href="{{ route('admin.service-profiles.index') }}">Pregled servisa</a></li>
         
         <li class="hover:text-white"><a href="{{ route('admin.towns.index') }}">Pregled gradova</a></li>
