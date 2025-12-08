@@ -7,10 +7,7 @@ use App\Repositories\UserRepository;
 
 class UserService{
 
-    private $userRepo;
-    public function __construct(UserRepository $userRepo){
-        $this->userRepo = $userRepo;
-    }
+    public function __construct(private UserRepository $userRepo){}
 
     public function getAll(){
         return $this->userRepo->all();

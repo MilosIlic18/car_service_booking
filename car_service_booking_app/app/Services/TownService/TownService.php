@@ -8,11 +8,7 @@ use App\Repositories\TownRepository;
 
 class TownService{
 
-    private $townRepo;
-    public function __construct(TownRepository $townRepo) {
-        
-        $this->townRepo  = $townRepo;
-    }
+    public function __construct(private TownRepository $townRepo) {}
     public function getAll(){
         return $this->townRepo->all();
     }

@@ -14,11 +14,9 @@ use App\Http\Requests\town\StoreTownRequest;
 class TownController extends Controller
 {
     //
-    private $townService;
 
-    public function __construct(TownService $townService){
-        $this->townService = $townService;
-    }
+    public function __construct(private TownService $townService){}
+    
     public function index(): View {
         return view("admin.towns.index",["towns"=>$this->townService->getAll()]);
     }
@@ -34,6 +32,6 @@ class TownController extends Controller
         return redirect()->route("admin.towns.index");
     }
     public function destroy(Town $town): RedirectResponse {
-        return $this->townService->destroy($town)!==1?back():back()->with("err","Nije moguce obrisati grad");
+        return $this->townService->destroy($town)!==1?back():back()->with("err","Nije moguce obrisati grad {$town->name}");
     }
 }

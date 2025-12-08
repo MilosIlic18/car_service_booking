@@ -6,13 +6,8 @@ use App\Models\ServiceType;
 
 
 class ServiceTypeRepository{
-
-    private  $serviceType;
     
-    function __construct(ServiceType $serviceType) {
-        
-        $this->serviceType = $serviceType;
-    }
+    function __construct(private ServiceType $serviceType) {}
     function all(){
         
         return $this->serviceType::all();

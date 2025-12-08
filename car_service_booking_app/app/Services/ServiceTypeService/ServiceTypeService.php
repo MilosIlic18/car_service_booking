@@ -10,11 +10,7 @@ use App\Repositories\ServiceTypeRepository;
 
 class ServiceTypeService{
 
-    private $serviceTypeRepo;
-    public function __construct(ServiceTypeRepository $serviceTypeRepo) {
-        
-        $this->serviceTypeRepo  = $serviceTypeRepo;
-    }
+    public function __construct(private ServiceTypeRepository $serviceTypeRepo) {}
     public function getAll(){
         return $this->serviceTypeRepo->all();
     }

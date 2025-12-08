@@ -14,11 +14,8 @@ use App\Http\Requests\serviceType\StoreServiceTypeRequest;
 class ServiceTypeController extends Controller
 {
     //
-    private $serviceTypeService;
-
-    public function __construct(ServiceTypeService $serviceTypeService){
-        $this->serviceTypeService = $serviceTypeService;
-    }
+    public function __construct(private ServiceTypeService $serviceTypeService){}
+    
     public function index(): View {
         return view("admin.service-types.index",["serviceTypes"=>$this->serviceTypeService->getAll()]);
     }

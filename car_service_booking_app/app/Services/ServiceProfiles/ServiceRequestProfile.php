@@ -8,15 +8,8 @@ use App\Repositories\ServiceRepository;
 use App\Repositories\LocationRepository;
 
 class ServiceRequestProfile{
-
-    private $serviceRepo;
-    private $locationRepo;
     
-    public function __construct(ServiceRepository $serviceRepo, LocationRepository $locationRepo) {
-
-        $this->serviceRepo  = $serviceRepo;
-        $this->locationRepo = $locationRepo;
-    }
+    public function __construct(private ServiceRepository $serviceRepo,private LocationRepository $locationRepo) {}
 
     public function store($request){
         

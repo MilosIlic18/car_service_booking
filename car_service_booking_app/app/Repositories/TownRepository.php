@@ -7,12 +7,7 @@ use App\Models\Location;
 
 class TownRepository{
 
-    private  $town;
-    
-    function __construct(Town $town) {
-        
-        $this->town = $town;
-    }
+    function __construct(private Town $town) {}
     function all(){
         
         return $this->town::with('locations')->get();

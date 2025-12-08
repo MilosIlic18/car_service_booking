@@ -12,11 +12,8 @@ use App\Services\ServiceProfiles\ServiceProfilesService;
 class ServiceProfilesController extends Controller
 {
     //
-    private $serviceProfilesService;
-
-    public function __construct(ServiceProfilesService $serviceProfilesService){
-        $this->serviceProfilesService = $serviceProfilesService;
-    }
+    public function __construct(private ServiceProfilesService $serviceProfilesService){}
+    
     public function index(): View {
         return view("admin.service-profiles.index",['services'=>$this->serviceProfilesService->getAll()]);
     }

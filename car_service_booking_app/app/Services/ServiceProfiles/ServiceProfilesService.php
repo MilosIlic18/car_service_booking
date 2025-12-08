@@ -8,12 +8,7 @@ use App\Repositories\ServiceRepository;
 
 class ServiceProfilesService{
 
-    private $serviceRepo;
-
-    public function __construct(ServiceRepository $serviceRepo) {
-
-        $this->serviceRepo  = $serviceRepo;
-    }
+    public function __construct(private ServiceRepository $serviceRepo) {}
 
     public function getAll(){
         return $this->serviceRepo->all();

@@ -12,14 +12,8 @@ use App\Services\ServiceProfiles\ServiceRequestProfile;
 class ServiceRequestController extends Controller
 {
     //
-    private $serviceRequestProfile;
-    private $townService;
-    
-    public function __construct(ServiceRequestProfile $serviceRequestProfile, TownService $townService){
-        
-        $this->serviceRequestProfile    = $serviceRequestProfile;
-        $this->townService              = $townService;
-    }
+    public function __construct(private ServiceRequestProfile $serviceRequestProfile,private TownService $townService){}
+
     public function index():View{
         return view('public.service_request',['towns'=>$this->townService->getAll()]);
     }

@@ -48,7 +48,7 @@
                             {{$serviceType->name}}
                         </td>
                         <td class="px-6 py-4 flex gap-[5px]">
-                            <a href="{{route('admin.service-types.show',$serviceType)}}" class="mb-[5px] text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center">Azuriraj</a>
+                            <a href="{{route('admin.service-types.show',$serviceType)}}" class="mb-[5px] text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center">Izmeni</a>
                             <form action="{{ route('admin.service-types.destroy', $serviceType) }}" method="POST">
                                 {{ csrf_field() }}
                                 @method('DELETE')

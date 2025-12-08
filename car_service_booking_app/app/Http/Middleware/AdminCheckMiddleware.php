@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
+use App\Enums\Role;
 
 class AdminCheckMiddleware
 {
@@ -16,6 +17,6 @@ class AdminCheckMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return Auth::user()->role==='admin'?$next($request):redirect("/");
+        return Auth::user()->role===Role::ADMIN->value?$next($request):redirect("/");
     }
 }
