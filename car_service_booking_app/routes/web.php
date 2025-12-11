@@ -4,11 +4,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\AdminCheckMiddleware;
+use App\Http\Middleware\OwnerCheckMiddleware;
 use App\Http\Controllers\Admin\TownController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ServiceTypeController;
 use App\Http\Controllers\Admin\ServiceProfilesController;
 use App\Http\Controllers\Public\ServiceRequestController;
+use App\Http\Controllers\ServiceProfiles\DashboardController as ServiceProfilesDasboardController;
 
 
 
@@ -48,6 +50,11 @@ Route::middleware(["auth",AdminCheckMiddleware::class])->prefix('/admin')->name(
         Route::post("","store")->name('store');
     });
 });
+
+Route::middleware(["auth",OwnerCheckMiddleware::class])->prefix('/service-profiles')->name("service-profiles.")->group(function(){
+    Route::get("",[ServiceProfilesDasboardController::class,"index"]);
+});
+
 
 Route::get('/logout',function (){
     Auth::logout();

@@ -4,6 +4,7 @@ namespace App\Services\ServiceProfiles;
 
 use App\Models\User;
 use App\Models\Service;
+use Illuminate\Support\Facades\Auth;
 use App\Repositories\ServiceRepository;
 
 class ServiceProfilesService{
@@ -23,5 +24,9 @@ class ServiceProfilesService{
         }
 
         return $service->save();
+    }
+
+    public function getServiceProfilesByOwner(){
+        return Auth::user()->services;
     }
 }
