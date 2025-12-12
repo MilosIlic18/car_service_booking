@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ServiceTypeController;
 use App\Http\Controllers\Admin\ServiceProfilesController;
 use App\Http\Controllers\Public\ServiceRequestController;
+use App\Http\Controllers\ServiceProfiles\ProfileDashboardController;
 use App\Http\Controllers\ServiceProfiles\DashboardController as ServiceProfilesDasboardController;
 
 
@@ -52,7 +54,11 @@ Route::middleware(["auth",AdminCheckMiddleware::class])->prefix('/admin')->name(
 });
 
 Route::middleware(["auth",OwnerCheckMiddleware::class])->prefix('/service-profiles')->name("service-profiles.")->group(function(){
-    Route::get("",[ServiceProfilesDasboardController::class,"index"]);
+    Route::get("",[ServiceProfilesDasboardController::class,"index"])->name('index');
+    
+    Route::prefix("{service}")->name("profile.")->group(function(){
+        Route::get("",[ProfileDashboardController::class,"index"])->name("index");
+    });
 });
 
 

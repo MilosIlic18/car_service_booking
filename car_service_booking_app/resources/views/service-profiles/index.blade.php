@@ -24,7 +24,7 @@
                         </div>
                     </div>
                 @else
-                    <a href="#" class="w-[300px] bg-gray-300 p-[10px] block flex flex-col gap-5">
+                    <a href="{{route('service-profiles.profile.index',$service)}}" class="w-[300px] bg-gray-300 p-[10px] block flex flex-col gap-5">
                         <div class="flex gap-4 items-center">
                             <i class="fa-solid fa-user"></i> <b>{{$service->name}}</b>
                         </div>
